@@ -11,88 +11,86 @@
 # 2. Вы когда-нибудь играли в игру "Крестики-нолики"?
 # Попробуйте создать её, причем чтобы сыграть в нее можно было в одиночку.
 
+def tic_tac_toe():
+
+    tic_tac_toe_field = [
+        [' ', ' ', ' '],
+        [' ', ' ', ' '],
+        [' ', ' ', ' ']
+    ]
+    flag = True
+    while True:
+        try:
+            x, y = map(int, input("Enter the coordinate separated by space: ").split())
+            if 0 <= x < 3 and 0 <= y < 3:
+                if flag:
+                    if tic_tac_toe_field[x][y] not in tic_tac_toe_field and tic_tac_toe_field[x][y] != '0':
+                        tic_tac_toe_field[x][y] = 'x'
+                        print_tic_tac_toe_field(tic_tac_toe_field)
+                        flag = False
+                    else:
+                        print("You can't put it here")
+
+                else:
+                    if tic_tac_toe_field[x][y] not in tic_tac_toe_field and tic_tac_toe_field[x][y] != 'x':
+                        tic_tac_toe_field[x][y] = '0'
+                        print_tic_tac_toe_field(tic_tac_toe_field)
+                        flag = True
+                    else:
+                        print("You can't put it here")
+            else:
+                print('This coordinate is not exist!')
+
+            if check_the_field(tic_tac_toe_field):
+                print('\nYou win!')
+                break
+            else:
+                continue
+        except Exception as e:
+            print("Invalid input!", e)
 
 
-# def tic_tac_toe():
-#
-#     tic_tac_toe_field = [
-#         [' ', ' ', ' '],
-#         [' ', ' ', ' '],
-#         [' ', ' ', ' ']
-#     ]
-#     flag = True
-#     while True:
-#         try:
-#             x, y = map(int, input("Enter the coordinate separated by space: ").split())
-#             if 0 <= x < 3 and 0 <= y < 3:
-#                 if flag:
-#                     if tic_tac_toe_field[x][y] not in tic_tac_toe_field and tic_tac_toe_field[x][y] != '0':
-#                         tic_tac_toe_field[x][y] = 'x'
-#                         print_tic_tac_toe_field(tic_tac_toe_field)
-#                         flag = False
-#                     else:
-#                         print("You can't put it here")
-#
-#                 else:
-#                     if tic_tac_toe_field[x][y] not in tic_tac_toe_field and tic_tac_toe_field[x][y] != 'x':
-#                         tic_tac_toe_field[x][y] = '0'
-#                         print_tic_tac_toe_field(tic_tac_toe_field)
-#                         flag = True
-#                     else:
-#                         print("You can't put it here")
-#             else:
-#                 print('This coordinate is not exist!')
-#
-#             if check_the_field(tic_tac_toe_field):
-#                 print('\nYou win!')
-#                 break
-#             else:
-#                 continue
-#         except Exception as e:
-#             print("Invalid input!", e)
-#
-#
-# def print_tic_tac_toe_field(tic_tac_toe_field):
-#     for i in range(len(tic_tac_toe_field)):
-#         for j in range(len(tic_tac_toe_field[0])):
-#             print(f'|{tic_tac_toe_field[i][j]}|', end=" ")
-#         print()
-#
-#
-# def check_the_field(tic_tac_toe_field):
-#     res_row = []
-#     res_col = []
-#     res_diagonal = []
-#     res_diagonal1 = []
-#
-#     l = len(tic_tac_toe_field)
-#
-#     for i in range(len(tic_tac_toe_field)):
-#         temp = []
-#         for j in range(len(tic_tac_toe_field)):
-#             temp.append(tic_tac_toe_field[j][i])
-#         res_col.append(temp)
-#         res_row.append(tic_tac_toe_field[i])
-#         res_diagonal.append(tic_tac_toe_field[i][i])
-#         res_diagonal1.append(tic_tac_toe_field[l - i - 1][i])
-#
-#     res_diagonal = all(x == res_diagonal[0] for x in res_diagonal) and all(x != " " for x in res_diagonal)
-#     res_diagonal1 = all(x == res_diagonal1[0] for x in res_diagonal1) and all(x != " " for x in res_diagonal1)
-#
-#     if res_diagonal or res_diagonal1:
-#         return True
-#
-#     for i in res_row:
-#         if all(x == i[0] for x in i) and all(x != " " for x in i):
-#             return True
-#     for i in res_col:
-#         if all(x == i[0] for x in i) and all(x != " " for x in i):
-#             return True
-#
-#     return False
-#
-#
-# tic_tac_toe()
+def print_tic_tac_toe_field(tic_tac_toe_field):
+    for i in range(len(tic_tac_toe_field)):
+        for j in range(len(tic_tac_toe_field[0])):
+            print(f'|{tic_tac_toe_field[i][j]}|', end=" ")
+        print()
+
+
+def check_the_field(tic_tac_toe_field):
+    res_row = []
+    res_col = []
+    res_diagonal = []
+    res_diagonal1 = []
+
+    l = len(tic_tac_toe_field)
+
+    for i in range(len(tic_tac_toe_field)):
+        temp = []
+        for j in range(len(tic_tac_toe_field)):
+            temp.append(tic_tac_toe_field[j][i])
+        res_col.append(temp)
+        res_row.append(tic_tac_toe_field[i])
+        res_diagonal.append(tic_tac_toe_field[i][i])
+        res_diagonal1.append(tic_tac_toe_field[l - i - 1][i])
+
+    res_diagonal = all(x == res_diagonal[0] for x in res_diagonal) and all(x != " " for x in res_diagonal)
+    res_diagonal1 = all(x == res_diagonal1[0] for x in res_diagonal1) and all(x != " " for x in res_diagonal1)
+
+    if res_diagonal or res_diagonal1:
+        return True
+
+    for i in res_row:
+        if all(x == i[0] for x in i) and all(x != " " for x in i):
+            return True
+    for i in res_col:
+        if all(x == i[0] for x in i) and all(x != " " for x in i):
+            return True
+
+    return False
+
+
+tic_tac_toe()
 
 
 # 3

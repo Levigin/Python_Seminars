@@ -32,16 +32,21 @@
 
 # 3.Составить список простых множителей натурального числа N
 
-# def get_simple_numbers(n: int):
-#     list_simple_numbers = []
-#     for i in range(1, int(n**0.5)):
-#         if n % i == 0:
-#             list_simple_numbers.append(i)
-#
-#     return list_simple_numbers
-#
-#
-# print(get_simple_numbers(10000))
+def get_simple_numbers(n: int):
+    list_simple_numbers = [i for i in range(2, 10)]
+    new_list = []
+    j = 2
+    while j < len(list_simple_numbers):
+        for i in list_simple_numbers:
+            if i % j == 0:
+                list_simple_numbers.remove(i)
+
+        j += 1
+
+    return list_simple_numbers
+
+
+print(get_simple_numbers(100000))
 
 
 # 4.Дана последовательность чисел. Получить список неповторяющихся элементов исходной последовательности
@@ -60,20 +65,20 @@
 
 # 5.Дан текстовый файл, содержащий целые числа.Удалить из него все четные числа.
 
-def del_even_numbers():
-    list_odd = []
-    with open('text_for_task5_in_seminar_3.txt', 'r') as file:
-        list_file = file.read().split(' ')
-        print(type(list_file[0]))
-        for i in range(len(list_file)):
-            if int(list_file[i]) % 2 != 0:
-                list_odd.append(list_file[i])
-
-    file.close()
-
-    with open('text_for_task5_in_seminar_3.txt', 'w') as file_write:
-        file_write.write(str(list_odd))
-
-
-del_even_numbers()
+# def del_even_numbers():
+#     list_odd = []
+#     with open('text_for_task5_in_seminar_3.txt', 'r') as file:
+#         list_file = file.read().split(' ')
+#         print(type(list_file[0]))
+#         for i in range(len(list_file)):
+#             if int(list_file[i]) % 2 != 0:
+#                 list_odd.append(list_file[i])
+#
+#     file.close()
+#
+#     with open('text_for_task5_in_seminar_3.txt', 'w') as file_write:
+#         file_write.write(str(list_odd))
+#
+#
+# del_even_numbers()
 

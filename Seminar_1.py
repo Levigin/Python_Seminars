@@ -17,9 +17,13 @@
 
 # Пользователь задаёт две строки. Определить количество вхождений одной строки в другой.
 #
-# str1 = input("Enter the first string") # Hello
-# str2 = input("Enter the second string") # el
-# print(str2 in str1)
+str1 = input("Enter the first string: ")  # Hello
+str2 = input("Enter the second string: ")  # el
+count = 0
+for i in str1:
+    if i in str2:
+        count += 1
+print(count)
 
 #Подсчитать сумму цифр в вещественном числе.
 
