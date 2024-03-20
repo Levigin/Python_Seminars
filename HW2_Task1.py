@@ -1,25 +1,27 @@
-import subprocess
+from checkers import check_out
+from yaml import safe_load
+from configtest import data_record
 
-PATH_FROM = "/home/levigin/GB/HW2"
-PATH_TO = "/home/levigin/GB/HW2/exclude"
-CHECK_FOLDER = "include"
-
-
-def checkout(command: str, text: str) -> bool:
-    result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, encoding="utf-8")
-    if not result.returncode and text in result.stdout:
-        return True
-    return False
+with open("config.yaml", "r") as file:
+    data = safe_load(file)
 
 
-def test_step1():
+def test_step1(data_record):
     # test1
-    assert checkout(f"cd {PATH_FROM}; 7z l archive.7z", "test.txt")
+    assert check_out(f"cd {data['PATH_FROM']}; {data['FORMAT_7Z']} l archive.{data['FORMAT_7Z']}", "test.txt")
 
 
-def test_step2():
+def test_step2(data_record):
+    assert check_out(f"rm -rf {data['PATH_TO']}", '')
+
+
+def test_step3(data_record):
     # test2
-    archive = checkout(f'cd {PATH_FROM}; 7z x archive.7z -o{PATH_TO}', "Everything is Ok")
-    check_folder = checkout(f'ls {PATH_TO}', CHECK_FOLDER)
-    check_file = checkout(f'ls {PATH_FROM}/{CHECK_FOLDER}', "test2.txt")
+    archive = check_out(f"cd {data['PATH_FROM']}; {data['FORMAT_7Z']} x archive.{data['FORMAT_7Z']} -o{data['PATH_TO']}", "Everything is Ok")
+    check_folder = check_out(f"ls {data['PATH_TO']}", data['CHECK_FOLDER'])
+    check_file = check_out(f"ls {data['PATH_FROM']}/{data['CHECK_FOLDER']}", "test2.txt")
     assert archive and check_folder and check_file
+
+
+def test_step4(data_record):
+    assert check_out(f"cd {data['PATH_TO']}; 7z a -t{data['FORMAT_ZIP']} archive.{data['FORMAT_ZIP']}", '')

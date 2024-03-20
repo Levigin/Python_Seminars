@@ -10,7 +10,6 @@ def checkout(command: str, text: str) -> bool:
     for ch in string.punctuation:
         out.replace(ch, " ")
     out_list = re.split(r'\n|=| ', out)
-    print(out_list)
     if not result.returncode and text in out_list:
         return True
     return False

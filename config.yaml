@@ -1,0 +1,10 @@
+PATH_FROM: /home/levigin/GB/HW2
+PATH_TO: /home/levigin/GB/HW2/exclude
+LOADAVG: /proc/loadavg
+CHECK_FOLDER: include
+FILE: test.txt
+ARCHIVE: archive.7z
+FILE_QUANTITY: 2
+FILE_SIZE: 1M
+FORMAT_7Z: 7z
+FORMAT_ZIP: zip
