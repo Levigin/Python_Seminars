@@ -8,3 +8,6 @@ FILE_QUANTITY: 2
 FILE_SIZE: 1M
 FORMAT_7Z: 7z
 FORMAT_ZIP: zip
+
+PATH_FROM_USER: /home/user2/GB/HW2
+PATH_TO_USER: /home/user2/GB/HW2/exclude
