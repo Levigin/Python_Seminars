@@ -1,0 +1,7 @@
+address: https://test-stand.gb.ru
+address_contact: https://test-stand.gb.ru/contact
+browser: chrome
+sleep_time: 2
+username: myname
+password: abb45c192f
+status_error: 401
