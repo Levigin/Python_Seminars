@@ -5,3 +5,5 @@ sleep_time: 2
 username: myname
 password: abb45c192f
 status_error: 401
+URL: https://test-stand.gb.ru/gateway/login
+URL_POSTS: https://test-stand.gb.ru/api/posts

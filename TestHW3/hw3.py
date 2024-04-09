@@ -1,9 +1,8 @@
 import time
-
 import pytest
 import yaml
 from TestPage import OperationsHelper
-from configtest import browser
+from configtest import browser, get_posts, title_post
 
 with open('config.yaml') as f:
     data = yaml.safe_load(f)
@@ -14,7 +13,11 @@ with open('config.yaml') as f:
     password = data['password']
 
 
-def test_1(browser):
+def test_1(title_post, get_posts):
+    assert title_post == get_posts
+
+
+def test_2(browser):
     test_page = OperationsHelper(browser, address)
     test_page.go_to_site()
     test_page.enter_login(username)
@@ -23,10 +26,7 @@ def test_1(browser):
     assert test_page.get_username_label() == f'Hello, myname'
 
 
-time.sleep(5)
-
-
-def test_2(browser):
+def test_3(browser):
     test_page = OperationsHelper(browser, address_contact)
     test_page.click_contact_button()
     time.sleep(2)
